@@ -1,0 +1,65 @@
+%% 自动阈值并导出数值
+close,clear,clc;
+image = imread('1364.jpg');           %读取原始文件
+I = rgb2gray(image);                    %转灰度
+for i=1:1:25
+    gray = i*10;                %设定灰度值
+    [ima{i},info(i,1),info(i,2),info(i,3)]=threshold_1(gray,I);             %调用自己写的阈值函数
+    info(i,4)=gray;
+end
+figure(1);
+plot(info(:,4),info(:,3),'r');              %作图
+title('阈值（x）-孔隙率（y）曲线');
+%saveas(figure(1),'quxian','png');           %存储图像
+hold on;
+% [m,n]=size(I);
+% igray=100
+% I1=I;
+% for i=1:m
+%     for j=1:n
+%         if I(i,j)<=igray
+%             I1(i,j)=0;
+%         else I1(i,j)=255;
+%         end
+%     end
+% end
+% figure(2);
+% imshow(I1);
+%%  对照组1
+image2 = imread('1388.jpg');           %读取原始文件
+I2 = rgb2gray(image2);                    %转灰度
+for i=1:1:25
+    gray = i*10;                %设定灰度值
+    [ima{i},info2(i,1),info2(i,2),info2(i,3)]=threshold_1(gray,I2);             %调用自己写的阈值函数
+    info2(i,4)=gray;
+end
+
+plot(info2(:,4),info2(:,3),'g');              %作图
+title('阈值（x）-孔隙率（y）曲线');
+%saveas(figure(1),'quxian','png');           %存储图像
+hold on;
+% [m,n]=size(I2);
+% igray=100
+% I1=I2;
+% for i=1:m
+%     for j=1:n
+%         if I2(i,j)<=igray
+%             I1(i,j)=0;
+%         else I1(i,j)=255;
+%         end
+%     end
+% end
+% figure(3);
+% imshow(I1);
+%% 对照组2
+image3 = imread('2798.jpg');           %读取原始文件
+I3 = rgb2gray(image3);                    %转灰度
+for i=1:1:25
+    gray = i*10;                %设定灰度值
+    [ima{i},info3(i,1),info3(i,2),info3(i,3)]=threshold_1(gray,I3);             %调用自己写的阈值函数
+    info3(i,4)=gray;
+end
+
+plot(info3(:,4),info3(:,3),'b');              %作图
+title('阈值（x）-孔隙率（y）曲线');
+%saveas(figure(1),'quxian','png');           %存储图像
