@@ -1,4 +1,4 @@
-'''
+''')
 clear,close all,clc;
 % 大箱子图像分成10*10的一百个方格，分别进行阈值分割及孔隙率计算，之后生成孔隙率云图。
 % load image
@@ -63,4 +63,4 @@ colormap('hot');     %set map color
 imagesc(porosity);   %draw with matrix,用矩阵绘图
 saveas(figure(3),'大箱子孔隙分布图.png');
 colorbar;
-'''
+'''(
