@@ -1,23 +1,24 @@
+'''
 clear,close all,clc;
-% ´óÏä×ÓÍ¼Ïñ·Ö³É10*10µÄÒ»°Ù¸ö·½¸ñ£¬·Ö±ğ½øĞĞãĞÖµ·Ö¸î¼°¿×Ï¶ÂÊ¼ÆËã£¬Ö®ºóÉú³É¿×Ï¶ÂÊÔÆÍ¼¡£
+% å¤§ç®±å­å›¾åƒåˆ†æˆ10*10çš„ä¸€ç™¾ä¸ªæ–¹æ ¼ï¼Œåˆ†åˆ«è¿›è¡Œé˜ˆå€¼åˆ†å‰²åŠå­”éš™ç‡è®¡ç®—ï¼Œä¹‹åç”Ÿæˆå­”éš™ç‡äº‘å›¾ã€‚
 % load image
-image_rgb{1} = imread('E:\00_¹«ÒæÏîÄ¿\01_ÊµÑéÕÕÆ¬\2018.07.08_´óÏä×Ó·Ö¼¶¼ÓÑ¹£¨0-150£©25kpÃ¿´Î\IMG_1597.JPG');
+image_rgb{1} = imread('E:\00_å…¬ç›Šé¡¹ç›®\01_å®éªŒç…§ç‰‡\2018.07.08_å¤§ç®±å­åˆ†çº§åŠ å‹ï¼ˆ0-150ï¼‰25kpæ¯æ¬¡\IMG_1597.JPG');
 % convert to grayscale image
 image_gray{1} = rgb2gray(image_rgb{1});
 % image segmentation
-image_gray{1} = flipud(image_gray{1});  %ÉÏÏÂ·­×ªÍ¼Ïñ
-image_gray{1} = image_gray{1}.';        %Í¼ÏñĞèÒªĞı×ªÊ±Ê¹ÓÃ´ËÃüÁî×ªÖÃ¾ØÕó
+image_gray{1} = flipud(image_gray{1});  %ä¸Šä¸‹ç¿»è½¬å›¾åƒ
+image_gray{1} = image_gray{1}.';        %å›¾åƒéœ€è¦æ—‹è½¬æ—¶ä½¿ç”¨æ­¤å‘½ä»¤è½¬ç½®çŸ©é˜µ
 figure(1);
 imshow(image_gray{1});
 [x,y] = ginput(2);
 close;                                         % close the current figure window
-x(:) = fix(x(:)); y(:) = fix(y(:));                       %È¡Õû
+x(:) = fix(x(:)); y(:) = fix(y(:));                       %å–æ•´
 m(1) = 1;
 % m(11) = x(2)-x(1);
 n(1) = 1;
 % n(11) = y(2)-y(1);
 for i = 2:11
-    m(i) = 1+(i-1)*fix((x(2)-x(1))/10);                 %¼ÆËãÍø¸ñ×ø±ê
+    m(i) = 1+(i-1)*fix((x(2)-x(1))/10);                 %è®¡ç®—ç½‘æ ¼åæ ‡
     n(i) = 1+(i-1)*fix((y(2)-y(1))/10);
 end
 image_target = image_gray{1}(y(1):y(1)+n(11)-n(1)-1,x(1):x(1)+m(11)-m(1)-1);
@@ -53,12 +54,13 @@ end
 figure(2);imshow(BW_full);
 % for i = 1:10
 %     for j = 1:10 
-%         str1{i,j} = ['¿×Ï¶ÂÊ',num2str(porosity(i,j))];     % put label
+%         str1{i,j} = ['å­”éš™ç‡',num2str(porosity(i,j))];     % put label
 %         text(m(i)+20,n(j)+20,str1(i,j),'color','red');    % put label
 %     end
 % end
 figure(3);
 colormap('hot');     %set map color
-imagesc(porosity);   %draw with matrix,ÓÃ¾ØÕó»æÍ¼
-saveas(figure(3),'´óÏä×Ó¿×Ï¶·Ö²¼Í¼.png');
+imagesc(porosity);   %draw with matrix,ç”¨çŸ©é˜µç»˜å›¾
+saveas(figure(3),'å¤§ç®±å­å­”éš™åˆ†å¸ƒå›¾.png');
 colorbar;
+'''
