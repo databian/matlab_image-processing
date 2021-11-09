@@ -1,0 +1,24 @@
+% 阈值与孔隙率关系曲线
+close all,clear,clc;
+% 函数功能：绘制一幅图像阈值与孔隙率关系的曲线
+% 变量解释
+
+%% 函数
+% 读取，转灰度
+image_rgb = imread('IMG_1377.JPG');
+image_gray = rgb2gray(image_rgb);
+% 截取目标
+imshow(image_gray);
+[x,y] = ginput(2)      %鼠标选取图像坐标；（2）代表选两个点
+x(:) = round(x(:));    %坐标取整数，四舍五入到最近整数
+y(:) = round(y(:));    %坐标取整数
+image_target = image_gray(y(1):y(2),x(1):x(2));    %截取原图中选取两点所包围的矩形部分
+% 计算阈值孔隙数据
+[r,c] = size(image_target);
+fullimage = r * c;
+for i = 1:255
+    BW{i} = im2bw(image_target,i/256);
+    cereals(i) = length(find(BW{i}==1));                                          %图像中谷物像素数
+    porosity(i) = [1-(cereals(i)/fullimage)];                               %计算孔隙率
+end
+plot(porosity);
